@@ -1,0 +1,5 @@
+/*  
+This component will display a list of movies and allow filtering by category. 
+It will fetch the data from the backend API using the Fetch API. 
+Each movie item can be a clickable link that redirects to the movie details page.
+*/

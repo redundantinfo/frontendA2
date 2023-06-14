@@ -1,0 +1,3 @@
+/*
+This page will render the SeatSelector component for seat selection and display the BookingConfirmation component after completing the booking.
+*/

@@ -1,0 +1,5 @@
+/*
+This component will display a graphic view of the auditorium and allow users to select available seats for a specific screening. 
+It will receive the screening ID as a prop and fetch the seat availability data from the backend API.
+The component should handle seat selection logic and calculate the total price based on the number of visitors and ticket prices for different age groups.
+*/
