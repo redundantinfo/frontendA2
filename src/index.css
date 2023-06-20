@@ -1,0 +1,27 @@
+.seat-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 10px;
+  /* Add additional styles as needed */
+}
+
+.seat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background-color: #ccc;
+  /* Add additional styles as needed */
+}
+
+.available {
+  background-color: green;
+}
+
+.booked {
+  background-color: red;
+}
+
+.unavailable {
+  background-color: gray;
+}

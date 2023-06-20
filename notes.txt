@@ -1,0 +1,8 @@
+1. I need to figure out how the backend works. I should probably create some simple fetches and see what comes back.
+Without knowing how the data is returned, it's hard to implement anything on the frontend.
+
+GET /api/table
+Get all records from a table or view.
+
+GET /api/table/:id
+Write an id after the table name and /. to retrieve a record with a specific id. (Works for those tables and views that have id column.)
