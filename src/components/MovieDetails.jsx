@@ -1,6 +1,3 @@
-/*
-This page will render the ScreeningList component to show the list of screenings for a specific movie.
-*/
 import React from 'react';
 import { useParams } from 'react-router-dom';
 

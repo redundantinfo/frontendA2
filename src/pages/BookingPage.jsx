@@ -1,10 +1,11 @@
 /*
-This page will render the ScreeningList component to show the list of screenings for a specific movie.
+This page will render the BookingForm component and display the BookingConfirmation component after completing the booking.
 */
+
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-function MovieDetails() {
+function BookingPage() {
   const { id } = useParams();
 
   // Fetch movie details based on the ID
@@ -12,11 +13,11 @@ function MovieDetails() {
 
   return (
     <div>
-      <h2>Movie Details</h2>
+      <h2>Booking Page</h2>
       <p>Movie ID: {id}</p>
-      {/* Display the movie details */}
+      {/* Add the booking form */}
     </div>
   );
 }
 
-export default MovieDetails;
+export default BookingPage;

@@ -1,3 +1,0 @@
-/*
-This page will render the MovieList component to show the list of movies.
-*/

@@ -3,10 +3,6 @@ This component will display a graphic view of the auditorium and allow users to 
 It will receive the screening ID and fetch the seat availability data from the backend API.
 The component should handle seat selection and calculate the total price based on the number of visitors and ticket prices for different age groups.
 */
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getSeats } from '../services/api';
-
 // ALL API calls should be made using the functions in src\services\api.js..
 
 /*
@@ -20,3 +16,23 @@ import { getSeats } from '../services/api';
 7. There should be a button to confirm the seat selection. When the button is clicked, the user should be redirected to the booking confirmation page.
 
 */
+
+import React from 'react';
+
+function AuditoriumView({ auditorium }) {
+  // Generate the seat numbers based on the number of seats in the auditorium
+  const seatNumbers = Array.from({ length: auditorium.numberOfSeats }, (_, index) => index + 1);
+
+  return (
+    <div>
+      <h2>Auditorium: {auditorium.name}</h2>
+      <div className="auditorium-view">
+        {seatNumbers.map((seatNumber) => (
+          <div key={seatNumber} className="seat">{seatNumber}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default AuditoriumView;

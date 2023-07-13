@@ -8,9 +8,9 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/movies/:id" component={MovieDetails} />
-        <Route path="/booking/:id" component={Booking} />
+        <Route exact path="/" component={MovieList} />
+        <Route exact path="/movies/:id" component={MovieDetails} />
+        <Route exact path="/movies/:id/book" component={BookingPage} />
       </Switch>
     </Router>
   );

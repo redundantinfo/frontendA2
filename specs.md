@@ -1,4 +1,4 @@
-Visitors should be able to:
+Users should be able to:
 
 Get information about movies being shown, incl. dates and times.
 

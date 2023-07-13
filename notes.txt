@@ -6,3 +6,16 @@ Get all records from a table or view.
 
 GET /api/table/:id
 Write an id after the table name and /. to retrieve a record with a specific id. (Works for those tables and views that have id column.)
+
+NOTE ON VIEW VS TABLE:
+
+VIEW:
+In frontend development, a "view" typically refers to a visual representation or presentation of data. 
+It can be a specific section or component of a web page that displays information to the user. 
+A view is responsible for rendering data and providing an interface for the user to interact with.
+
+TABLE:
+A "table" refers to a specific UI component that is commonly used to organize and display structured data in rows and columns. 
+It is a way to present tabular data in a structured format, often resembling a grid. 
+Tables can be used to represent various types of data, such as user information, product listings, or financial records.
+
