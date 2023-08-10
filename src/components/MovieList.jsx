@@ -1,36 +1,80 @@
-// ALL API calls should be made using the functions in src\services\api.js.
-
-/*
-MovieList: Displays a list of movies, including dates and times.
-
-1. Fetch the movie data from the backend API
-2. Display the movie data in a list. Each movie item should display the title, poster, and genres.
-3. The movie list should be filterable by category. The user should be able to select one or more categories to filter the list.
-4. The movie list should be sortable by title.
-5. Each movie item should be a clickable link that redirects to the movie details page.
-
-*/
-
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 function MovieList() {
+  const [screenings, setScreenings] = useState([]);
   const [movies, setMovies] = useState([]);
+  const [sortOption, setSortOption] = useState('title'); // Default sorting option
 
   useEffect(() => {
-    // Fetch movies from the backend API
-    fetch('/api/movies') // Replace with the correct API endpoint
-      .then((response) => response.json())
-      .then((data) => setMovies(data));
+    fetch('/api/screenings')
+      .then(response => response.json())
+      .then(data => {
+        setScreenings(data);
+      })
+      .catch(error => {
+        console.error('Error fetching screenings:', error);
+      });
+
+    fetch('/api/movies')
+      .then(response => response.json())
+      .then(data => {
+        setMovies(data);
+      })
+      .catch(error => {
+        console.error('Error fetching movies:', error);
+      });
   }, []);
+
+  const sortedMovies = movies.slice().sort((a, b) => {
+    const aValue = sortOption === 'description.length'
+      ? a.description.length
+      : sortOption === 'description.categories'
+      ? a.description.categories.join(', ')
+      : a[sortOption];
+
+    const bValue = sortOption === 'description.length'
+      ? b.description.length
+      : sortOption === 'description.categories'
+      ? b.description.categories.join(', ')
+      : b[sortOption];
+
+    if (typeof aValue === 'string' && typeof bValue === 'string') {
+      return aValue.localeCompare(bValue);
+    } else {
+      return aValue - bValue;
+    }
+  });
 
   return (
     <div>
-      <h2>Movies</h2>
+      <h2>Sort By:</h2>
+      <select value={sortOption} onChange={e => setSortOption(e.target.value)}>
+        <option value="title">Title</option>
+        <option value="description.length">Description Length</option>
+        <option value="description.categories">Categories</option>
+        {/* Add more options as needed */}
+      </select>
+
+      <h2>Movies:</h2>
       <ul>
-        {movies.map((movie) => (
+        {sortedMovies.map(movie => (
           <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            <img src={'https://cinema-rest.nodehill.se' + movie.description.posterImage} alt={movie.title} />
+            <p>Title: {movie.title}</p>
+            <p>Description Length: {movie.description.length}</p>
+            <p>Categories: {movie.description.categories.join(', ')}</p>
+          
+            {/* Display screening data for this movie */}
+            <ul>
+              {screenings
+                .filter(screening => screening.movieId === movie.id)
+                .map(screening => (
+                  <li key={screening.id}>
+                    <p>Screening at: {screening.time}</p>
+                    <p>In auditorium: {screening.auditoriumId}</p>
+                  </li>
+                ))}
+            </ul>
           </li>
         ))}
       </ul>
